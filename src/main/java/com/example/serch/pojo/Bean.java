@@ -1,5 +1,6 @@
 package com.example.serch.pojo;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  * @date 2021/7/7 10:00
  */
 @Data
-public class Bean {
+public class Bean extends JSONObject {
     private String id;//_id
     private  String sourceSite;//来源网站
     private  String internetSite;//网址

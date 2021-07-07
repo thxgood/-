@@ -1,16 +1,16 @@
 package com.example.serch.serviceimpl;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.example.serch.mapper.Mapper;
 import com.example.serch.pojo.Bean;
-import com.example.serch.service.Inservice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * @author 亦梦里 亦书予
@@ -22,72 +22,107 @@ public class Inserviceimpl {
     @Autowired
     private Mapper mapper;
 
-    public String in(){
+    public String in() {
         return null;
     }
+
     //读取json文件
     public String readJsonFile(String fileName) {
-        String jsonStr = "";
+//        String jsonStr = "";
+//        try {
+//            File jsonFile = new File(fileName);
+//            FileReader fileReader = new FileReader(jsonFile);
+//            Reader reader = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
+//            int ch = 0;
+//            StringBuilder sb = new StringBuilder();
+//            while ((ch = reader.read()) != -1) {
+//                sb.append((char) ch);
+//            }
+//            fileReader.close();
+//            reader.close();
+//            jsonStr = sb.toString();
+//            Bean bean= JSON.parseObject(jsonStr,Bean.class);
+//            System.out.println(bean);
+//            return bean;
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+
+//        try {
+//            FileInputStream fis = new FileInputStream(fileName);
+//            //Construct BufferedReader from InputStreamReader
+//            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+//
+//            String line = null;
+//            while ((line = br.readLine()) != null) {
+//                System.out.println(line);
+//            }
+//        return line;
+//        }
+//            catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
         try {
             File jsonFile = new File(fileName);
             FileReader fileReader = new FileReader(jsonFile);
             Reader reader = new InputStreamReader(new FileInputStream(jsonFile), StandardCharsets.UTF_8);
             int ch = 0;
             StringBuilder sb = new StringBuilder();
+
             while ((ch = reader.read()) != -1) {
                 sb.append((char) ch);
             }
-            fileReader.close();
-            reader.close();
-            jsonStr = sb.toString();
-            return jsonStr;
+//            JSONObject jobj =JSON.parseObject(String.valueOf(sb));
+//            JSONArray movies = jobj.getJSONArray("RECORDS");//构建JSONArray数组
+//            for (int i = 0 ; i < movies.size();i++){
+//                JSONObject key = (JSONObject)movies.get(i);
+//                String id = (String)key.get("_id");
+//                String sourceStie = (String)key.get("来源网站");
+//                String internetSite=((String)key.get("网址"));
+//                String classification=((String)key.get("分类"));
+//                String financialClassification=((String)key.get("金融分类"));
+//                String downloadDate=((String)key.get("下载日期"));
+//                String releaseDate=((String)key.get("发布日期"));
+//                String title=((String)key.get("标题"));
+//                String transfrFrom=((String)key.get("转自"));
+//                String originalTttle=((String)key.get("原标题"));
+//                String editingReporter=((String)key.get("编辑记者"));
+//                String orignalWebsiteLink=((String)key.get("原网站链接"));
+//                String extrainfo=((String)key.get("extra-info"));
+//                String summary=((String)key.get("摘要"));
+//                String textContent=((String)key.get("文本内容"));
+//                String webPageSourceCode=((String)key.get("网页源码"));
+//                System.out.println(id);
+//                System.out.println(sourceStie);
+//                System.out.println(internetSite);
+//                System.out.println(classification);
+//                System.out.println(financialClassification);
+//                System.out.println(downloadDate);
+//                System.out.println(releaseDate);
+//                System.out.println(title);
+//                System.out.println(transfrFrom);
+//                System.out.println(originalTttle);
+//                System.out.println(editingReporter);
+//                System.out.println(orignalWebsiteLink);
+//                System.out.println(extrainfo);
+//                System.out.println(summary);
+//                System.out.println(textContent);
+//                System.out.println(webPageSourceCode);
+//            }
+            JSONObject jobj =JSON.parseObject(String.valueOf(sb),Bean.class);
+            JSONArray movies = jobj.getJSONArray("RECORDS");//构建JSONArray数组
+
+                for (Object p:movies){
+                    System.out.println(p);
+                }
+
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
-//        public List<Bean> getResourceTypes(ResourceTypeQo resourceTypeQo) {
-//            String path = Objects.requireNonNull(ResourceTypeServiceImpl.class.getClassLoader().getResource("resource-type.json")).getPath();
-//            String s = readJsonFile(path);
-//            JSONObject jobj = JSON.parseObject(s);
-//            //构建JSONArray数组
-//            JSONArray movies = jobj.getJSONArray("RECORDS");
-//            List<ResourceTypeVo> resourceTypeVos = new ArrayList<>();
-//            List<ResourceTypeVo> resourceTypeVoList = nextList(resourceTypeQo.getId(), movies, resourceTypeVos);
-//            if (resourceTypeVoList.size() > 0) {
-//                return resourceTypeVoList;
-//            } else {
-//                throw new ResourceException(ResourceErrorCode.RESOURCE_TYPE_NOT_FOUND.getMsg(), ResourceErrorCode.RESOURCE_TYPE_NOT_FOUND.getCode());
-//            }
-//        }
+}
 
-
-
-//        private List<ResourceTypeVo> nextList(String id, JSONArray movies, List<ResourceTypeVo> resourceTypeVos) {
-//            for (Object movie : movies) {
-//                JSONObject object = (JSONObject) movie;
-//                String aimsId = (String) object.get("id");
-//                String name = (String) object.get("name");
-//                JSONArray subLit = object.getJSONArray("subLit");
-//                if (subLit != null && subLit.size() > 0) {
-//                    if (id.equals(aimsId)) {
-//                        for (Object sub : subLit) {
-//                            JSONObject obj = (JSONObject) sub;
-//                            String idNext = (String) obj.get("id");
-//                            String nameNext = (String) obj.get("name");
-//                            ResourceTypeVo resourceTypeVo = new ResourceTypeVo();
-//                            resourceTypeVo.setId(idNext);
-//                            resourceTypeVo.setName(nameNext);
-//                            resourceTypeVos.add(resourceTypeVo);
-//                        }
-//                    } else {
-//                        nextList(id, subLit, resourceTypeVos);
-//                    }
-//                } else {
-//                    System.out.println(name+":没查询到当前子类");
-//                }
-//            }
-//            return resourceTypeVos;
-
-    }
 

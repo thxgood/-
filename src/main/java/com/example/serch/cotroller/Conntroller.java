@@ -1,6 +1,7 @@
 package com.example.serch.cotroller;
 
 
+import com.example.serch.pojo.Bean;
 import com.example.serch.service.Inservice;
 import com.example.serch.serviceimpl.Inserviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
