@@ -5,5 +5,6 @@ package com.example.serch.mapper;
  * @version 1.0
  * @date 2021/7/7 10:00
  */
+
 public interface Mapper {
 }

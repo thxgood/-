@@ -5,5 +5,6 @@ package com.example.serch.service;
  * @version 1.0
  * @date 2021/7/7 10:01
  */
-public interface service {
+public interface Inservice {
+public String in();
 }
