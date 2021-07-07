@@ -1,10 +1,13 @@
 package com.example.serch.pojo;
 
+import lombok.Data;
+
 /**
  * @author 亦梦里 亦书予
  * @version 1.0
  * @date 2021/7/7 10:00
  */
+@Data
 public class Bean {
     private String id;//_id
     private  String sourceSite;//来源网站

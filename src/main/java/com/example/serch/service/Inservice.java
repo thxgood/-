@@ -6,5 +6,5 @@ package com.example.serch.service;
  * @date 2021/7/7 10:01
  */
 public interface Inservice {
-public String in();
+    String in();
 }

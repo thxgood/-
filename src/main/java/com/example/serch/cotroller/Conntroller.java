@@ -20,6 +20,6 @@ public class Conntroller {
     @RequestMapping("/in")
     public String in(){
 
-        return inserviceimpl.in();
+        return inserviceimpl.readJsonFile("北极星电力网.json");
     }
 }
