@@ -1,5 +1,7 @@
 package com.example.serch.service;
 
+import com.alibaba.fastjson.JSONArray;
+
 /**
  * @author 亦梦里 亦书予
  * @version 1.0
@@ -7,4 +9,5 @@ package com.example.serch.service;
  */
 public interface Inservice {
     String in();
+    String readJsonFile(String fileName);
 }

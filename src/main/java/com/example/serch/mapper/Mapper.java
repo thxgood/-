@@ -1,5 +1,9 @@
 package com.example.serch.mapper;
+import com.alibaba.fastjson.JSONArray;
+import com.example.serch.pojo.Bean;
 import org.springframework.stereotype.Repository;
+
+import java.lang.reflect.Array;
 
 /**
  * @author 亦梦里 亦书予
@@ -8,6 +12,6 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface Mapper {
-
-    }
+    JSONArray Saveadd(JSONArray array);
+}
 

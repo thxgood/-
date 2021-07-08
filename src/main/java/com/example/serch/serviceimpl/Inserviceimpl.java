@@ -110,14 +110,15 @@ public class Inserviceimpl {
 //                System.out.println(textContent);
 //                System.out.println(webPageSourceCode);
 //            }
-            JSONObject jobj =JSON.parseObject(String.valueOf(sb),Bean.class);
+            JSONObject jobj = JSON.parseObject(String.valueOf(sb), Bean.class);
             JSONArray movies = jobj.getJSONArray("RECORDS");//构建JSONArray数组
 
-                for (Object p:movies){
-                    System.out.println(p);
-                }
+//                for (Object p:movies){
+//                    System.out.println(p);
+//                }
 
-            return null;
+            reader.close();
+            return mapper.Saveadd(movies);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
