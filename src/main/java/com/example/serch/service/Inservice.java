@@ -8,6 +8,5 @@ import com.alibaba.fastjson.JSONArray;
  * @date 2021/7/7 10:01
  */
 public interface Inservice {
-    String in();
     String readJsonFile(String fileName);
 }

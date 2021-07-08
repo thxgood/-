@@ -4,6 +4,7 @@ import com.example.serch.pojo.Bean;
 import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 /**
  * @author 亦梦里 亦书予
@@ -12,6 +13,6 @@ import java.lang.reflect.Array;
  */
 @Repository
 public interface Mapper {
-    JSONArray Saveadd(JSONArray array);
+    JSONArray Saveadd(List<Bean> bean);
 }
 

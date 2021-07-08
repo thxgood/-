@@ -1,6 +1,7 @@
 package com.example.serch.cotroller;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.example.serch.pojo.Bean;
 import com.example.serch.service.Inservice;
 import com.example.serch.serviceimpl.Inserviceimpl;
@@ -19,8 +20,7 @@ public class Conntroller {
     @Autowired
     private Inserviceimpl inserviceimpl;
     @RequestMapping("/in")
-    public String in(){
-
+    public JSONArray in(){
         return inserviceimpl.readJsonFile("北极星电力网.json");
     }
 }
