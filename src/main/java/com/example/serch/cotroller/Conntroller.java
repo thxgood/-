@@ -8,7 +8,10 @@ import com.example.serch.serviceimpl.Inserviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * @author 亦梦里 亦书予
@@ -16,11 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021/7/7 9:59
  */
 @RestController
+@ResponseBody
 public class Conntroller {
     @Autowired
     private Inserviceimpl inserviceimpl;
     @RequestMapping("/in")
-    public JSONArray in(){
+    public int in(){
         return inserviceimpl.readJsonFile("北极星电力网.json");
     }
 }
