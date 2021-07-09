@@ -164,7 +164,7 @@ goto end
 
 :error
 set ERROR_CODE=1
-
+@REM a
 :end
 @endlocal & set ERROR_CODE=%ERROR_CODE%
 
