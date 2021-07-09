@@ -27,4 +27,8 @@ public class Conntroller {
     public int in(){
         return inserviceimpl.readJsonFile("北极星电力网.json");
     }
+    @RequestMapping("/take")
+    public  int take(){
+
+    }
 }
