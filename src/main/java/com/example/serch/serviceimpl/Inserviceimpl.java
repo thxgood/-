@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,8 +44,21 @@ public class Inserviceimpl {
             JSONArray records = root.getJSONArray("RECORDS");
 
             List<Bean> beanList = JSON.parseArray(records.toJSONString(), Bean.class);
-            return mapper.Saveadd(beanList);
 
+            int pointsDataLimit = 500;
+            int listSize=beanList.size();
+            int maxSize=listSize - 1;
+            List<Bean> newList = new ArrayList<Bean>();//新建一个载体list
+            for (int i = 0; i < listSize; i++) {
+                //分批次处理
+                newList.add(beanList.get(i));//循环将数据填入载体list
+                if (pointsDataLimit == newList.size() || i == maxSize) {  //载体list达到要求,进行批量操作
+                    //调用批量插入
+                    mapper.Saveadd(newList);
+                    newList.clear();//每次批量操作后,清空载体list,等待下次的数据填入
+                }
+            }
+return 1;
         } catch (IOException e) {
             e.printStackTrace();
             return 0;
