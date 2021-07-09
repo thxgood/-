@@ -24,7 +24,8 @@ public class Inserviceimpl {
     private Mapper mapper;
 
     //读取json文件
-    public JSONArray readJsonFile(String fileName) {
+
+    public int readJsonFile(String fileName) {
 
         try {
             File jsonFile = new File(fileName);
@@ -42,11 +43,11 @@ public class Inserviceimpl {
             JSONArray records = root.getJSONArray("RECORDS");
 
             List<Bean> beanList = JSON.parseArray(records.toJSONString(), Bean.class);
-         return mapper.Saveadd(beanList);
+            return mapper.Saveadd(beanList);
 
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return 0;
         }
     }
 }

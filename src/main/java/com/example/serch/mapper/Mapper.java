@@ -13,6 +13,6 @@ import java.util.List;
  */
 @Repository
 public interface Mapper {
-    JSONArray Saveadd(List<Bean> bean);
+    int Saveadd(List<Bean> bean);
 }
 
