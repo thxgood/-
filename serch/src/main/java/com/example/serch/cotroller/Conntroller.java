@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 亦梦里 亦书予
@@ -27,8 +28,8 @@ public class Conntroller {
     public int in(){
         return inserviceimpl.readJsonFile("北极星电力网.json");
     }
-//    @RequestMapping("/take")
-//    public  int take(){
-//return inserviceimpl.getData();
-//    }
+    @RequestMapping("/take")
+    public List take() {
+return inserviceimpl.getData();
+    }
 }

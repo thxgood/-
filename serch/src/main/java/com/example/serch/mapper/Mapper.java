@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 亦梦里 亦书予
@@ -14,6 +15,6 @@ import java.util.List;
 @Repository
 public interface Mapper {
     int Saveadd(List<Bean> bean);
-//    int Gatdata();
+    List Gatdata();
 }
 

@@ -13,6 +13,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author 亦梦里 亦书予
@@ -64,11 +65,14 @@ return 1;
             return 0;
         }
     }
-//    public int getData(){
-//        mapper.Gatdata();
-//
-//        return 0;
-//    }
+    public List getData() {
+        List<Map> list= mapper.Gatdata();
+        for (Object a:list){
+            System.out.println(a);
+        }
+        return list;
+
+    }
 }
 
 

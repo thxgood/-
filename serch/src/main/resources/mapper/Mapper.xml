@@ -4,27 +4,45 @@
     <insert id="Saveadd" parameterType="com.example.serch.pojo.Bean">
         insert into news(_id,来源网站,网址,分类,金融分类,下载日期,发布日期,标题,转自,原标题,编辑记者,原网站链接,extra_info,摘要,文本内容,网页源码)values
         <foreach collection="list" item="userinfo" separator=",">
-        (#{userinfo.id},
-         #{userinfo.sourceSite},
-         #{ userinfo.internetSite},
-         #{userinfo.classification},
-         #{userinfo.financialClassification},
-         #{userinfo.downloadDate},
-         #{userinfo.releaseDate},
-         #{userinfo.title},
-         #{userinfo.transferFrom},
-         #{userinfo.originalTitle},
-         #{userinfo.editingReporter},
-         #{userinfo.originalWebsiteLink},
-         #{userinfo.extrainfo},
-         #{userinfo.summary},
-         #{userinfo.textContent},
-         #{userinfo.webPageSourceCode}
-         )
+            (#{userinfo.id},
+            #{userinfo.sourceSite},
+            #{ userinfo.internetSite},
+            #{userinfo.classification},
+            #{userinfo.financialClassification},
+            #{userinfo.downloadDate},
+            #{userinfo.releaseDate},
+            #{userinfo.title},
+            #{userinfo.transferFrom},
+            #{userinfo.originalTitle},
+            #{userinfo.editingReporter},
+            #{userinfo.originalWebsiteLink},
+            #{userinfo.extrainfo},
+            #{userinfo.summary},
+            #{userinfo.textContent},
+            #{userinfo.webPageSourceCode}
+            )
         </foreach>
     </insert>
-<!--    <select id="Gtedata">-->
-
-<!--    </select>-->
-
+    <resultMap id="ResultMap" type="com.example.serch.pojo.Bean">
+        <result column="_id"  property="id"/>
+        <result column="来源网站"  property="sourceSite"/>
+        <result column="网址"  property="internetSite"/>
+        <result column="分类"  property="classification"/>
+        <result column="金融分类"  property="financialClassification"/>
+        <result column="下载日期"  property="downloadDate"/>
+        <result column="发布日期"  property="releaseDate"/>
+        <result column="标题"  property="title"/>
+        <result column="转自"  property="transferFrom"/>
+        <result column="原标题"  property="originalTitle"/>
+        <result column="编辑记者"  property="editingReporter"/>
+        <result column="原网站链接"  property="originalWebsiteLink"/>
+        <result column="extra_info"  property="extrainfo"/>
+        <result column="摘要"  property="summary"/>
+        <result column="文本内容"  property="textContent"/>
+        <result column="网页源码"  property="webPageSourceCode"/>
+    </resultMap>
+    <select id="Gatdata" parameterType="java.util.List" resultType="com.example.serch.pojo.Bean" resultMap="ResultMap">
+        select _id,来源网站,网址,分类,金融分类,下载日期,发布日期,标题,转自,原标题,编辑记者,原网站链接,extra_info,摘要,文本内容,网页源码
+        from news;
+    </select>
 </mapper>
