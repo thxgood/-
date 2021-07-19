@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.serch.mapper.Mapper;
 import com.example.serch.pojo.Bean;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,12 @@ import java.util.Map;
  */
 @Service
 public class Inserviceimpl {
+    private static final String Exchange_name = "test";
     @Autowired
     private Mapper mapper;
-
     //读取json文件
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     public int readJsonFile(String fileName) {
 
@@ -47,8 +50,8 @@ public class Inserviceimpl {
             List<Bean> beanList = JSON.parseArray(records.toJSONString(), Bean.class);
 
             int pointsDataLimit = 500;
-            int listSize=beanList.size();
-            int maxSize=listSize - 1;
+            int listSize = beanList.size();
+            int maxSize = listSize - 1;
             List<Bean> newList = new ArrayList<Bean>();//新建一个载体list
             for (int i = 0; i < listSize; i++) {
                 //分批次处理
@@ -59,20 +62,24 @@ public class Inserviceimpl {
                     newList.clear();//每次批量操作后,清空载体list,等待下次的数据填入
                 }
             }
-return 1;
+
+            return 1;
         } catch (IOException e) {
             e.printStackTrace();
             return 0;
         }
     }
-    public List getData() {
-        List<Map> list= mapper.Gatdata();
-        for (Object a:list){
-            System.out.println(a);
-        }
-        return list;
 
+    public boolean getData() {
+        List<Map> list = mapper.Gatdata();
+
+//        for (Object a:list){
+//            System.out.println(a);
+//        }
+        rabbitTemplate.convertAndSend(Exchange_name, "*", list);
+        return true;
     }
 }
+
 
 

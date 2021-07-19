@@ -1,18 +1,13 @@
 package com.example.serch.cotroller;
 
 
-import com.alibaba.fastjson.JSONArray;
-import com.example.serch.pojo.Bean;
-import com.example.serch.service.Inservice;
 import com.example.serch.serviceimpl.Inserviceimpl;
+import com.example.serch.serviceimpl.Mqserver;
+import org.springframework.amqp.core.Message;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author 亦梦里 亦书予
@@ -24,12 +19,16 @@ import java.util.Map;
 public class Conntroller {
     @Autowired
     private Inserviceimpl inserviceimpl;
+    @Autowired
+    private Mqserver mqserver;
+
     @RequestMapping("/in")
-    public int in(){
+    public int in() {
         return inserviceimpl.readJsonFile("北极星电力网.json");
     }
+
     @RequestMapping("/take")
-    public List take() {
-return inserviceimpl.getData();
+    public boolean take() {
+        return inserviceimpl.getData();
     }
 }

@@ -4,13 +4,15 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @author 亦梦里 亦书予
  * @version 1.0
  * @date 2021/7/7 10:00
  */
 @Data
-public class Bean {
+public class Bean implements Serializable {
     @JSONField(name = "_id")
     private String id;//_id
     @JSONField(name = "来源网站")
