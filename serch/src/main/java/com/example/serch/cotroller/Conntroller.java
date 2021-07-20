@@ -2,8 +2,7 @@ package com.example.serch.cotroller;
 
 
 import com.example.serch.serviceimpl.Inserviceimpl;
-import com.example.serch.serviceimpl.Mqserver;
-import org.springframework.amqp.core.Message;
+import com.example.serch.serviceimpl.Rabbitmq;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,9 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Conntroller {
     @Autowired
     private Inserviceimpl inserviceimpl;
-    @Autowired
-    private Mqserver mqserver;
-
     @RequestMapping("/in")
     public int in() {
         return inserviceimpl.readJsonFile("北极星电力网.json");
@@ -30,5 +26,9 @@ public class Conntroller {
     @RequestMapping("/take")
     public boolean take() {
         return inserviceimpl.getData();
+    }
+    @RequestMapping("/getmq")
+    public void getmq(){
+       Rabbitmq rabbitmq =new Rabbitmq();
     }
 }

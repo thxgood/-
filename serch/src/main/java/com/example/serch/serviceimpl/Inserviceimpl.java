@@ -74,6 +74,7 @@ public class Inserviceimpl {
         List<Map> list = mapper.Gatdata();
 
 //        for (Object a:list){
+
 //            System.out.println(a);
 //        }
         rabbitTemplate.convertAndSend(Exchange_name, "*", list);
