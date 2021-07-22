@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.serch.mapper.Mapper;
 import com.example.serch.pojo.Bean;
+import com.example.serch.service.Inservice;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,14 @@ import java.util.Map;
  * @date 2021/7/7 10:01
  */
 @Service
-public class Inserviceimpl {
+public class Inserviceimpl implements Inservice {
     private static final String Exchange_name = "test";
     @Autowired
     private Mapper mapper;
     //读取json文件
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
+    @Override
     public int readJsonFile(String fileName) {
 
         try {
@@ -69,7 +70,7 @@ public class Inserviceimpl {
             return 0;
         }
     }
-
+    @Override
     public boolean getData() {
         List<Map> list = mapper.Gatdata();
 

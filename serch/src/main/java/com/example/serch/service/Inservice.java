@@ -6,6 +6,7 @@ package com.example.serch.service;
  * @date 2021/7/7 10:01
  */
 public interface Inservice {
-    String readJsonFile(String fileName);
+    int readJsonFile(String fileName);
+    boolean getData();
 
 }
