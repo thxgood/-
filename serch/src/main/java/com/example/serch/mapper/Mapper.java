@@ -15,6 +15,6 @@ import java.util.Map;
 @Repository
 public interface Mapper {
     int Saveadd(List<Bean> bean);
-    List Gatdata();
+    List<Bean> Gatdata();
 }
 

@@ -24,12 +24,14 @@ import java.util.Map;
  */
 @Service
 public class Inserviceimpl implements Inservice {
+   List<Bean> list=null;
     private static final String Exchange_name = "test";
     @Autowired
     private Mapper mapper;
     //读取json文件
     @Autowired
     private RabbitTemplate rabbitTemplate;
+
     @Override
     public int readJsonFile(String fileName) {
 
@@ -70,15 +72,26 @@ public class Inserviceimpl implements Inservice {
             return 0;
         }
     }
+
     @Override
     public boolean getData() {
-        List<Map> list = mapper.Gatdata();
-
-//        for (Object a:list){
-
-//            System.out.println(a);
-//        }
+        List<Bean> list = mapper.Gatdata();
         rabbitTemplate.convertAndSend(Exchange_name, "*", list);
+        return true;
+    }
+
+    public boolean elasticsearch() {
+        if (list == null || list.size() ==0) {
+            System.out.println("队列消息调用失败，请检查mq");
+            return false;
+        } else {
+            System.out.println("成功");
+
+            return true;
+        }
+    }
+    public boolean test(){
+        mapper.Gatdata();
         return true;
     }
 }
