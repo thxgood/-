@@ -3,6 +3,10 @@ package com.example.serch.pojo;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.annotation.JSONField;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.io.Serializable;
 
@@ -12,8 +16,10 @@ import java.io.Serializable;
  * @date 2021/7/7 10:00
  */
 @Data
+@Document(indexName = "user" ,shards = 5, replicas = 1)
 public class Bean implements Serializable {
-    @JSONField(name = "_id")
+//    @JSONField(name = "_id")
+    @Id
     private String id;//_id
     @JSONField(name = "来源网站")
     private  String sourceSite;//来源网站
@@ -28,6 +34,7 @@ public class Bean implements Serializable {
     @JSONField(name = "发布日期")
     private String releaseDate;// 发布日期
     @JSONField(name = "标题")
+    @Field(type = FieldType.Text,analyzer = "ik_max_word")
     private String title;//标题
     @JSONField(name = "转自")
     private String transferFrom;// 转自
